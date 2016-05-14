@@ -6,11 +6,19 @@ public class Choix : MonoBehaviour {
 
 
 	public void lancerProcedure() {
-		SceneManager.LoadScene ("procedure_step_01");
+		ApplicationModel.isProcedure = true;
+		ApplicationModel.isDiagnostic = false;
+		SceneManager.LoadScene ("reconnaissance_machine");
 	}
 
 	public void lancerDiagnostic() {
-		SceneManager.LoadScene ("diagnostic_step_01");
+		ApplicationModel.isProcedure = false;
+		ApplicationModel.isDiagnostic = true;
+		SceneManager.LoadScene ("reconnaissance_machine");
+	}
+
+	public void choisirManuellement() {
+		SceneManager.LoadScene ("choix_machine");
 	}
 
 	// Use this for initialization
