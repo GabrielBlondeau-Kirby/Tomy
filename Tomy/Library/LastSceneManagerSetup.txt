@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/procedure_choix_machine.unity
+- path: Assets/procedure_choice.unity
   isLoaded: 1
   isActive: 1

@@ -3,6 +3,7 @@ using System.Collections;
 using Vuforia;
 using Image = UnityEngine.UI.Image;
 using Text = UnityEngine.UI.Text;
+using UnityEngine.SceneManagement;
 
 
 public class VuforiaDetectionScript : MonoBehaviour, ITrackableEventHandler {
@@ -30,15 +31,18 @@ public class VuforiaDetectionScript : MonoBehaviour, ITrackableEventHandler {
 		{
 			
 			//mShowGUIButton = true;
-
-
+		
+			string nomMachine = "";
 			if (gameObject.name == "ObjectTargetPorteTelephone") {
 				s = "Détection du porte téléphone rose";
+				nomMachine = "Porte téléphone rose";
 				//Lancer avec un petit retardement la scene suivante du type procedure_portetelephone_step01
 			} else if (gameObject.name == "ImageTargetStones") {
 				s = "Détection de l'image avec les pierres";
-
+				nomMachine = "Stones";
 			}
+
+
 
 
 			//Trouver s'il n'y a pas une façon plus simple de trouver un objet
@@ -54,6 +58,15 @@ public class VuforiaDetectionScript : MonoBehaviour, ITrackableEventHandler {
 				if (text.name == "TextElementDetecte") {
 					text.text = s;
 				}
+			}
+
+		
+			//System.Threading.Thread.Sleep(2000);
+			ApplicationModel.setMachine(nomMachine);
+			if (ApplicationModel.isProcedure) {
+				SceneManager.LoadScene ("procedure_choice");
+			} else if (ApplicationModel.isDiagnostic) {
+				SceneManager.LoadScene ("diagnostic_" + ApplicationModel.getMachine().getNomScene() + "_step_01");
 			}
 
 		}
@@ -86,4 +99,7 @@ public class VuforiaDetectionScript : MonoBehaviour, ITrackableEventHandler {
 			}
 		}*/
 	}
+
+
+
 }

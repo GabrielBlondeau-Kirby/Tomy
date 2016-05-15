@@ -14,19 +14,7 @@ public class ListMachinesController : MonoBehaviour {
 	void Start () {
 
 		// 1. Get the data to be displayed
-		Machines = new ArrayList (){
-			"Imprimante 3D",
-			"Porte téléphone rose",
-			"Stones",
-			"Imprimante 3D",
-			"Porte téléphone rose",
-			"Stones",
-			"Imprimante 3D",
-			"Porte téléphone rose",
-			"Stones",
-			"Imprimante 3D",
-			"Porte téléphone rose"
-		};
+		Machines = ApplicationModel.getMachinesList();
 
 		// 2. Iterate through the data,
 		//	  instantiate prefab,
@@ -46,11 +34,11 @@ public class ListMachinesController : MonoBehaviour {
 
 	public void clickMachine(string nomMachine) {
 		Debug.Log(nomMachine); //TODO remove
-		ApplicationModel.machine = nomMachine;
+		ApplicationModel.setMachine(nomMachine);
 		if (ApplicationModel.isProcedure) {
 			SceneManager.LoadScene ("procedure_choice");
 		} else if (ApplicationModel.isDiagnostic) {
-			SceneManager.LoadScene ("diagnostic_step_01");
+			SceneManager.LoadScene ("diagnostic_" + ApplicationModel.getMachine().getNomScene() + "_step_01");
 		}
 
 	}
