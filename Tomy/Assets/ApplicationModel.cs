@@ -2,14 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/* Classe du modèle qui garde dans des attributs statiques les valeurs à conserver tout au long
+du cycle de vie de l'application */
 public class ApplicationModel {
 
-	private static Machine machine;
-	public static bool isProcedure = false;
-	public static bool isDiagnostic = false;
-	private static Procedure procedure;
-	private static int step = 0;
+	private static Machine machine; //machine scannée ou sélectionnée
+	public static bool isProcedure = false; //mode procédure choisi (sur l'écran d'accueil)
+	public static bool isDiagnostic = false; //mode diagnostic choisi (sur l'écran d'accueil)
+	private static Procedure procedure; //procédure sélectionnée
+	private static int step = 0; //numéro de l'étape de la procédure ou du diagnostic
 
+
+	//liste des machines et des procédures disponibles
+	//TODO Pour l'instant écrit en dur mais il faudrait les mettre dans un fichier texte ou une bd
 	private static ArrayList listeMachines = new ArrayList (){
 		new Machine("Imprimante 3D", "imprimante3d", new ArrayList() {
 			new Procedure("Changement du scotch", "changer_scotch"),

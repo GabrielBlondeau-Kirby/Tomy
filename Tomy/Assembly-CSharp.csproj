@@ -106,6 +106,8 @@
      <None Include="Assets\StreamingAssets\QCAR\example2_OT.xml" />
      <None Include="Assets\Vuforia\Shaders\ClippingMask.shader" />
      <None Include="Assets\Vuforia\Shaders\BrightTexture.shader" />
+     <None Include="Assets\StreamingAssets\QCAR\Tomy_OT.xml" />
+     <None Include="Assets\Editor\QCAR\TargetsetData\Tomy_info.xml" />
      <None Include="Assets\license_3rdpartynotice.txt" />
      <None Include="Assets\Vuforia\Shaders\Text3D.shader" />
  <Reference Include="UnityEngine.Networking">

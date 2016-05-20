@@ -10,8 +10,6 @@ public class VuforiaDetectionScript : MonoBehaviour, ITrackableEventHandler {
 
 	private TrackableBehaviour mTrackableBehaviour;
 
-	//private bool mShowGUIButton = false;
-	//private Rect mButtonRect = new Rect(50,50,920,60);
 	private string s = "";
 
 	void Start () {
@@ -21,6 +19,7 @@ public class VuforiaDetectionScript : MonoBehaviour, ITrackableEventHandler {
 		}
 	}
 
+	//quand une image ou un modèle 3D est détecté
 	public void OnTrackableStateChanged(
 		TrackableBehaviour.Status previousStatus,
 		TrackableBehaviour.Status newStatus)
@@ -29,9 +28,8 @@ public class VuforiaDetectionScript : MonoBehaviour, ITrackableEventHandler {
 			newStatus == TrackableBehaviour.Status.TRACKED ||
 			newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
 		{
-			
-			//mShowGUIButton = true;
 		
+			//on teste quel est l'élément détecté grâce au non du gameObject
 			string nomMachine = "";
 			if (gameObject.name == "ObjectTargetPorteTelephone") {
 				s = "Détection du porte téléphone rose";
@@ -40,12 +38,13 @@ public class VuforiaDetectionScript : MonoBehaviour, ITrackableEventHandler {
 			} else if (gameObject.name == "ImageTargetStones") {
 				s = "Détection de l'image avec les pierres";
 				nomMachine = "Stones";
+			} else if (gameObject.name == "ObjectTargetImprimante3D") {
+				s = "Détection de l'imprimante 3D";
+				nomMachine = "Imprimante 3D";
 			}
 
-
-
-
-			//Trouver s'il n'y a pas une façon plus simple de trouver un objet
+			//On indique sur l'UI qu'on a trouvé un élément 
+			//TODO Trouver s'il n'y a pas une façon plus simple de trouver un objet
 			Image[] imgs = Canvas.FindObjectsOfType<Image>();
 			foreach (Image img in imgs){
 				if (img.name == "ImagePatienter") {
@@ -60,8 +59,7 @@ public class VuforiaDetectionScript : MonoBehaviour, ITrackableEventHandler {
 				}
 			}
 
-		
-			//System.Threading.Thread.Sleep(2000);
+			//On met à jour la machine dans le Modèle et on lance l'étape suivante
 			ApplicationModel.setMachine(nomMachine);
 			if (ApplicationModel.isProcedure) {
 				SceneManager.LoadScene ("procedure_choice");
@@ -71,8 +69,9 @@ public class VuforiaDetectionScript : MonoBehaviour, ITrackableEventHandler {
 			}
 
 		}
-		else
+		else //perte de la détection d'un élément
 		{
+			//on met à jour l'UI 
 			//Trouver s'il n'y a pas une façon plus simple de trouver un objet
 			Image[] imgs = Canvas.FindObjectsOfType<Image>();
 			foreach (Image img in imgs){
@@ -87,18 +86,11 @@ public class VuforiaDetectionScript : MonoBehaviour, ITrackableEventHandler {
 					text.text = "";
 				}
 			}
-
-			//mShowGUIButton = false;
+				
 		}
 	}
 
 	void OnGUI() {
-		/*if (mShowGUIButton) {
-			// draw the GUI button
-			if (GUI.Button(mButtonRect, s)) {
-				// do something on button click 
-			}
-		}*/
 	}
 
 

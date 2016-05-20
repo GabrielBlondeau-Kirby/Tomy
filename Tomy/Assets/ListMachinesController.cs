@@ -33,7 +33,6 @@ public class ListMachinesController : MonoBehaviour {
 
 
 	public void clickMachine(string nomMachine) {
-		Debug.Log(nomMachine); //TODO remove
 		ApplicationModel.setMachine(nomMachine);
 		if (ApplicationModel.isProcedure) {
 			SceneManager.LoadScene ("procedure_choice");
