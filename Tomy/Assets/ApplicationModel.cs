@@ -4,12 +4,11 @@ using System.Collections.Generic;
 
 public class ApplicationModel {
 
-	//private static string machine = "";
 	private static Machine machine;
 	public static bool isProcedure = false;
 	public static bool isDiagnostic = false;
-	//private static string procedure = "";
 	private static Procedure procedure;
+	private static int step = 0;
 
 	private static ArrayList listeMachines = new ArrayList (){
 		new Machine("Imprimante 3D", "imprimante3d", new ArrayList() {
@@ -114,6 +113,7 @@ public class ApplicationModel {
 		foreach (Procedure p in machine.getProcedures()){
 			if (p.getNomProcedure().Equals(newProcedure)) {
 				procedure = p;
+				step = 1;
 			}
 		}
 	}
@@ -136,5 +136,24 @@ public class ApplicationModel {
 		return list;
 	}
 
+	public static string getStep() {
+		if (step < 10) {
+			return "0" + step.ToString();
+		} else {
+			return step.ToString();
+		}
+	}
+
+	public static void nextStep(){
+		step++;
+	}
+
+	public static void previousStep() {
+		step--;
+	}
+
+	public static void setStep(int newStep) {
+		step = newStep;
+	}
 
 }

@@ -66,6 +66,7 @@ public class VuforiaDetectionScript : MonoBehaviour, ITrackableEventHandler {
 			if (ApplicationModel.isProcedure) {
 				SceneManager.LoadScene ("procedure_choice");
 			} else if (ApplicationModel.isDiagnostic) {
+				ApplicationModel.setStep (1);
 				SceneManager.LoadScene ("diagnostic_" + ApplicationModel.getMachine().getNomScene() + "_step_01");
 			}
 

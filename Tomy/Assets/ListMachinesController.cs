@@ -38,6 +38,7 @@ public class ListMachinesController : MonoBehaviour {
 		if (ApplicationModel.isProcedure) {
 			SceneManager.LoadScene ("procedure_choice");
 		} else if (ApplicationModel.isDiagnostic) {
+			ApplicationModel.setStep (1);
 			SceneManager.LoadScene ("diagnostic_" + ApplicationModel.getMachine().getNomScene() + "_step_01");
 		}
 

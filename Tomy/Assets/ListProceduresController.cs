@@ -44,4 +44,5 @@ public class ListProceduresController : MonoBehaviour {
 		string scene = "procedure_" + ApplicationModel.getMachine ().getNomScene () + "_" + ApplicationModel.getProcedure ().getNomScene () + "_step_01";
 		SceneManager.LoadScene (scene);
 	}
+		
 }

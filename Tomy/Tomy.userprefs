@@ -1,13 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/VuforiaDetectionScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ListProceduresController.cs">
     <Files>
-      <File FileName="Assets/ListMachinesController.cs" Line="3" Column="1" />
+      <File FileName="Assets/ListMachinesController.cs" Line="41" Column="89" />
       <File FileName="Assets/Choix.cs" Line="21" Column="41" />
-      <File FileName="Assets/VuforiaDetectionScript.cs" Line="63" Column="3" />
-      <File FileName="Assets/Vuforia/Scripts/DefaultTrackableEventHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets/ApplicationModel.cs" Line="9" Column="38" />
-      <File FileName="Assets/ListProceduresController.cs" Line="5" Column="34" />
+      <File FileName="Assets/VuforiaDetectionScript.cs" Line="69" Column="88" />
+      <File FileName="Assets/ApplicationModel.cs" Line="129" Column="43" />
+      <File FileName="Assets/ListProceduresController.cs" Line="46" Column="1" />
+      <File FileName="Assets/Machine.cs" Line="27" Column="31" />
+      <File FileName="Assets/Procedure.cs" Line="14" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
