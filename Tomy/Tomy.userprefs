@@ -1,16 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/VuforiaDetectionScript.cs">
-    <Files>
-      <File FileName="Assets/Choix.cs" Line="35" Column="4" />
-      <File FileName="Assets/ListMachinesController.cs" Line="41" Column="33" />
-      <File FileName="Assets/VuforiaDetectionScript.cs" Line="45" Column="34" />
-      <File FileName="Assets/ApplicationModel.cs" Line="14" Column="16" />
-      <File FileName="Assets/ListProceduresController.cs" Line="45" Column="34" />
-      <File FileName="Assets/Machine.cs" Line="1" Column="1" />
-      <File FileName="Assets/Procedure.cs" Line="1" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
