@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/reconnaissance_machine.unity
+- path: Assets/procedure_imprimante3d_changer_scotch_step_03.unity
   isLoaded: 1
   isActive: 1
