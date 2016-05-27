@@ -3,17 +3,22 @@ Tomy
 
 ## TODO
 
-POC Faire une surimpression sur un objet
+- Procédure step 1
+- Procédure step 2
+- Procedure step 4
+- Procédure step 6
+- Procédure step 8
+- Diagnostic step 1
+- Appeler l'expert
 
-POC Afficher une flèche animée au dessus d'un objet
+------
 
-POC Faire une surimpression d'un objet et animer la surimpression
+Moins prioritaire :
 
-POC Animation d'une feuille de papier qui se décolle
-
-POC Animation ciseaux
-
-
-Voir comment on gère la communication opérateur/expert
+- petite animation pour le picto patienter
+- essayer d'éviter les boucles sur les images/textes du canvas pour trouver l'élément à modifier
+- corriger le bug de la liste des machines/procédures qui est déjà scrollée à l'arrivée sur la page
+- faire fonctionner le bouton retour de la tablette
+- ajouter picto patienter entre chaque étape vu que Vuforia est long à charger
 
 
