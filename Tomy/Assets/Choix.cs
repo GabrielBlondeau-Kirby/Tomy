@@ -10,6 +10,7 @@ public class Choix : MonoBehaviour {
 	public void lancerProcedure() {
 		ApplicationModel.isProcedure = true;
 		ApplicationModel.isDiagnostic = false;
+		SceneManager.UnloadScene ("accueil");
 		SceneManager.LoadScene ("reconnaissance_machine");
 	}
 
@@ -17,6 +18,7 @@ public class Choix : MonoBehaviour {
 	public void lancerDiagnostic() {
 		ApplicationModel.isProcedure = false;
 		ApplicationModel.isDiagnostic = true;
+		SceneManager.UnloadScene ("accueil");
 		SceneManager.LoadScene ("reconnaissance_machine");
 	}
 

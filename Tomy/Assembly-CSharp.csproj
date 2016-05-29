@@ -52,6 +52,7 @@
      <Compile Include="Assets\ListProceduresController.cs" />
      <Compile Include="Assets\Machine.cs" />
      <Compile Include="Assets\Procedure.cs" />
+     <Compile Include="Assets\ReturnButton.cs" />
      <Compile Include="Assets\Vuforia\Scripts\BackgroundPlaneBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\CloudRecoBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\CylinderTargetBehaviour.cs" />
