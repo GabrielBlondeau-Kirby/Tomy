@@ -22,6 +22,11 @@ public class Choix : MonoBehaviour {
 		SceneManager.LoadScene ("reconnaissance_machine");
 	}
 
+	public void lancerAppelExpert() {
+		SceneManager.UnloadScene ("accueil");
+		SceneManager.LoadScene ("ComExpert/communication_expert");
+	}
+
 	//bouton choisir manuellement sur la page de reconnaissance de la machine
 	public void choisirManuellement() {
 		SceneManager.LoadScene ("choix_machine");
