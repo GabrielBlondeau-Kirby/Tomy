@@ -8,11 +8,13 @@ using Vuforia;
 public class ScriptCamera : MonoBehaviour
 {
 	//private const string ServerIp = "192.168.0.58";
-	private const string ServerIp = "10.145.128.96";
+	//private const string ServerIp = "10.145.128.96";
+	private const string ServerIp = "192.168.0.20";
+
 	private const int ServerPort = 4444;
 
 	private const string PrefixTarget = "ObjectTarget_";
-	private const string PrefixAugmentation = "anim_";
+	private const string PrefixAugmentation = "Surimpr_";
 
 	private const string Command_ToggleAnim = "toggle_anim";
 
@@ -51,16 +53,24 @@ public class ScriptCamera : MonoBehaviour
 
 	private void ReceivedMessage(NetworkMessage netmsg)
 	{
-		dbg_network("received message");
 
 		string message = netmsg.ReadMessage<NetMessage>().str;
 		string[] split = message.Split(';');
-		if (split[0].Equals(Command_ToggleAnim))
+
+		dbg_network("received message " + message);
+
+		if (split [0].Equals ("surimpression")) {
+			GameObject go = GameObject.Find(PrefixTarget + split[1]).transform.Find(PrefixAugmentation + split[2]).gameObject;
+			go.SetActive(!go.activeInHierarchy);
+		}
+
+		/*if (split[0].Equals(Command_ToggleAnim))
 		{
 			GameObject go = GameObject.Find(PrefixTarget + split[1]).transform.Find(PrefixAugmentation + split[2]).gameObject;
 			go.SetActive(!go.activeInHierarchy);
-			dbg_network("activating ");
-		}
+
+		}*/
+
 	}
 
 	private void ReceivedUpdateCam(NetworkMessage netmsg)

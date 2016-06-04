@@ -4,7 +4,6 @@ using System.Collections;
 using System.Threading;
 using UnityEngine.UI;
 using networkBase;
-using UnityEditor;
 
 public class NetworkManager : MonoBehaviour {
 
@@ -67,10 +66,18 @@ public class NetworkManager : MonoBehaviour {
 
 	public void sendMessage2()
 	{
-		Debug.Log("sending message 1");
+		Debug.Log("sending message 2");
 		NetMessage nm = new NetMessage();
 		nm.number = 5;
 		nm.str = "toggle_anim;kitkat;RTradeMark";
+		NetworkServer.SendToAll(NetMessage.MsgId, nm);
+	}
+
+	public void sendMessageSurimpression(string model, string element) {
+		Debug.Log("sending message " + model + " " + element);
+		NetMessage nm = new NetMessage();
+		nm.number = 5;
+		nm.str = "surimpression;"+ model +";" + element;
 		NetworkServer.SendToAll(NetMessage.MsgId, nm);
 	}
 	
