@@ -3,8 +3,7 @@ Tomy
 
 ## TODO
 
-- Procédure step 1
-- Procédure step 2
+- Procédure step 2 //mise de côté
 - Procedure step 4
 - Procédure step 6
 - Procédure step 8
