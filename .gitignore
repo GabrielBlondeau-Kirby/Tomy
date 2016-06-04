@@ -4,6 +4,7 @@ Tomy/[Tt]emp/
 Tomy/[Oo]bj/
 Tomy/[Bb]uild/
 Tomy/[Bb]uilds/
+Tomy/[Tt]est_Data/
 Tomy/Assets/AssetStoreTools*
 
 #Gitignore projet TomyExpert
@@ -12,6 +13,7 @@ TomyExpert/[Tt]emp/
 TomyExpert/[Oo]bj/
 TomyExpert/[Bb]uild/
 TomyExpert/[Bb]uilds/
+TomyExpert/[Tt]est_Data/
 TomyExpert/Assets/AssetStoreTools*
 
 
@@ -38,4 +40,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.app
+*.exe
+*.pdb
 *.unitypackage
