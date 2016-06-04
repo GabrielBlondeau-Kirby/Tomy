@@ -28,7 +28,7 @@ public class ScriptCamera : MonoBehaviour
 
 		//recuperation de la topologie réseau
 		HostTopology Topology = new HostTopology(network.getConnectionConfig(), 5);
-		debug_network.text = "Client";
+		dbg_network("Client");
 
 		//initialisation et configuration du client réseau
 		netClient = new NetworkClient();
@@ -41,17 +41,17 @@ public class ScriptCamera : MonoBehaviour
 
 		//Connection du client
 		netClient.Connect(ServerIp, ServerPort);
-		debug_network.text = netClient.isConnected?"connected":"not connected";
+		dbg_network(netClient.isConnected?"connected":"not connected");
 	}
 
 	private void OnConnected(NetworkMessage netmsg)
 	{
-		debug_network.text = "connected";
+		dbg_network("connected");
 	}
 
 	private void ReceivedMessage(NetworkMessage netmsg)
 	{
-		debug_network.text = "received message";
+		dbg_network("received message");
 
 		string message = netmsg.ReadMessage<NetMessage>().str;
 		string[] split = message.Split(';');
@@ -59,24 +59,38 @@ public class ScriptCamera : MonoBehaviour
 		{
 			GameObject go = GameObject.Find(PrefixTarget + split[1]).transform.Find(PrefixAugmentation + split[2]).gameObject;
 			go.SetActive(!go.activeInHierarchy);
-			debug_network.text = "activating ";
+			dbg_network("activating ");
 		}
 	}
 
 	private void ReceivedUpdateCam(NetworkMessage netmsg)
 	{
-		debug_network.text = "received cam update Should not happen";
+		dbg_network("received cam update Should not happen");
 	}
 
- //
- //                         .-=-.          .--. <3
- //             __        .'     '.    <3 /  " )
- //     _     .'  '.     /   .-.   \     /  .-'\  
- //    ( \   / .-.  \   /   /   \   \   /  /    ^ 
- //     \ `-` /   \  `-'   /     \   `-`  /	 	  <3  
- //      `-.-`     '.____.'       `.____.'
- //
- //ascii.co.uk
+
+	private void dbg_network(string text)
+	{
+		if (debug_network != null)
+			if (debug_network.IsActive())
+				debug_network.text= text;
+	}
+	private void dbg_normal(string text)
+	{
+		if (debug_normal != null)
+			if (debug_normal.IsActive())
+				debug_normal.text= text;
+	}
+
+	//
+	//                         .-=-.          .--. <3
+	//             __        .'     '.    <3 /  " )
+	//     _     .'  '.     /   .-.   \     /  .-'\  
+	//    ( \   / .-.  \   /   /   \   \   /  /    ^ 
+	//     \ `-` /   \  `-'   /     \   `-`  /	 	  <3  
+	//      `-.-`     '.____.'       `.____.'
+	//
+	//ascii.co.uk
 
 	void Update ()
 	{
@@ -100,7 +114,7 @@ public class ScriptCamera : MonoBehaviour
 			
 			CamUpdate cu = new CamUpdate();
 			cu.ImageBytes = tex.EncodeToJPG();
-			debug_normal.text = cu.ImageBytes.Length + "";
+			dbg_normal(cu.ImageBytes.Length + "");
 			netClient.SendByChannel(CamUpdate.MsgId, cu, 2);
 			/**/
 		}
