@@ -179,7 +179,7 @@ public class ScriptCamera : MonoBehaviour
 				netClient.Disconnect();
 			}
 		}
-		else if (split[0].Equals("closedConnexion"))
+		else if (split[0].Equals("closeConnexion"))
 		{
 
 			dbg_network("connexion closed");
@@ -243,7 +243,7 @@ public class ScriptCamera : MonoBehaviour
 			netClient.SendByChannel(CamUpdate.MsgId, cu, 2);
 			/**/
 		}
-		else if (tryConnexion && tick > 500)
+		else if (tryConnexion && tick > 50)
 		{
 
 			netClient.Connect(ServerIp, ServerPort);

@@ -148,7 +148,6 @@ public class NetworkManager : MonoBehaviour {
 		nm.number = 1;
 		nm.str = "closeConnexion;true";
 		NetworkServer.SendToAll(NetMessage.MsgId, nm);
-
 	}
 
 	public void ReceivedUpdateCam(NetworkMessage netMsg)
