@@ -102,6 +102,7 @@ public class NetworkManager : MonoBehaviour {
 		else
 		{
 			PanelAppelEntrant.SetActive(true);
+			audioSource.Play();
 		}
 		//Ajouter avertissement connexion + accepter ou refuser.
 	}
