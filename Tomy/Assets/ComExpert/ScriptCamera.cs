@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using networkBase;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -7,9 +8,9 @@ using Vuforia;
 
 public class ScriptCamera : MonoBehaviour
 {
-	//private const string ServerIp = "192.168.0.58";
+	private const string ServerIp = "192.168.0.58";
 	//private const string ServerIp = "10.145.128.96";
-	private const string ServerIp = "192.168.0.20";
+	//private const string ServerIp = "192.168.0.20";
 
 	private const int ServerPort = 4444;
 
@@ -17,11 +18,15 @@ public class ScriptCamera : MonoBehaviour
 	private const string PrefixAugmentation = "Surimpr_";
 
 	private const string Command_ToggleAnim = "toggle_anim";
+	private const int tickVideo = 15;
 
 	public Text debug_normal; // ecriture vert à l'écran
 	public Text debug_network; // ecriture rouge à l'écran
 	private NetworkClient netClient;
 	private int tick = 0;
+
+	private bool isAllowed = false, tryConnexion = true;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -38,24 +43,30 @@ public class ScriptCamera : MonoBehaviour
 
 		// on map les methodes qui seront appelé pour chaque id des messages reçu
 		netClient.RegisterHandler(MsgType.Connect, OnConnected);
+		netClient.RegisterHandler(MsgType.Disconnect, OnDisconnected);
 		netClient.RegisterHandler(CamUpdate.MsgId, ReceivedUpdateCam);
 		netClient.RegisterHandler(NetMessage.MsgId, ReceivedMessage);
 
-		//Connection du client
-		netClient.Connect(ServerIp, ServerPort);
-		dbg_network(netClient.isConnected?"connected":"not connected");
 	}
 
 	private void OnConnected(NetworkMessage netmsg)
 	{
-		dbg_network("connected");
+		isAllowed = false;
+		tryConnexion = false;
+		dbg_network("Connected, waiting for expert");
+	}
+	private void OnDisconnected(NetworkMessage netmsg) // le client est déconnecté du serveur
+	{
+		isAllowed = false;
+		tryConnexion = false;
+		dbg_network("Disconnected");
 	}
 
 	private void ReceivedMessage(NetworkMessage netmsg)
 	{
 
-		string message = netmsg.ReadMessage<NetMessage>().str;
-		string[] split = message.Split(';');
+		NetMessage message = netmsg.ReadMessage<NetMessage>();
+		string[] split = message.str.Split(';');
 
 		dbg_network("received message " + message);
 
@@ -152,14 +163,28 @@ public class ScriptCamera : MonoBehaviour
 			}
 				
 		}
-
-		/*if (split[0].Equals(Command_ToggleAnim))
+		else if (split[0].Equals("allowConnexion"))
 		{
-			GameObject go = GameObject.Find(PrefixTarget + split[1]).transform.Find(PrefixAugmentation + split[2]).gameObject;
-			go.SetActive(!go.activeInHierarchy);
+			string value = split[1];
+			if (value.Equals("true")) // connexion autorisé par l'expert
+			{
+				isAllowed = true;
+				dbg_network("connected, allowed");
+			}
+			else //connexion refusé par l'expert
+			{
+				dbg_network("connexion refused");
+				if (message.number == 1) // connexion refusé automatiquement car un client est déjà connecté a l'expert
+					dbg_normal("Opérateur occupé");
+				netClient.Disconnect();
+			}
+		}
+		else if (split[0].Equals("closedConnexion"))
+		{
 
-		}*/
-
+			dbg_network("connexion closed");
+			netClient.Disconnect();
+		}
 	}
 
 	private void ReceivedUpdateCam(NetworkMessage netmsg)
@@ -191,11 +216,13 @@ public class ScriptCamera : MonoBehaviour
 	//
 	//ascii.co.uk
 
+
 	void Update ()
 	{
-		tick++;
+		// incrémentatino uniquement lorsque l'expert a authoriser l'opérateur a envoyer des images
+			tick++;
 		//Tick pour eviter envoyer l'image de la caméra toute les X updates (la c'est 15)
-		if (tick > 15)
+		if (netClient.isConnected && isAllowed && tick > tickVideo)
 		{
 			tick = 0;
 			// récupération de la taille de l'écran divisé par 8
@@ -209,13 +236,20 @@ public class ScriptCamera : MonoBehaviour
 
 			//Point permet de changer la définition d'une Texture2D.
 			Point(tex, Screen.width / 4, Screen.height / 4);
-
 			
 			CamUpdate cu = new CamUpdate();
 			cu.ImageBytes = tex.EncodeToJPG();
 			dbg_normal(cu.ImageBytes.Length + "");
 			netClient.SendByChannel(CamUpdate.MsgId, cu, 2);
 			/**/
+		}
+		else if (tryConnexion && tick > 500)
+		{
+
+			netClient.Connect(ServerIp, ServerPort);
+			dbg_network("trying connexion");
+			
+			tick = 0;
 		}
 	}
 
