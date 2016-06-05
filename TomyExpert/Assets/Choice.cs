@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class Choice : MonoBehaviour {
 
+	string arrowProperty = "position";
+
 	// Use this for initialization
 	void Start () {
 	
@@ -35,10 +37,16 @@ public class Choice : MonoBehaviour {
 				Dropdown.OptionData elem = new Dropdown.OptionData (element);
 				dropDownMontrer.options.Add (elem);
 			}
+
+			GameObject test = GameObject.Find ("Panel").transform.Find ("ButtonAfficherFleche").gameObject;
+			test.SetActive (true);
+
 		} else {
 			dropDownMontrer.options.Clear ();
 			Dropdown.OptionData elemInit = new Dropdown.OptionData ("- Choix d'un élément -");
 			dropDownMontrer.options.Add (elemInit);
+
+			GameObject.Find ("ButtonAfficherFleche").gameObject.SetActive (false);
 
 		}
 
@@ -77,4 +85,23 @@ public class Choice : MonoBehaviour {
 		NetworkManager networkManager = networkManagerObject.GetComponent<NetworkManager> ();
 		networkManager.sendMessageSurimpression (machine.getNomMachineObjectTarget(), element);
 	}
+
+
+	public void setArrowProperty(string property) {
+		this.arrowProperty = property;
+	}
+
+	public void changeArrowProperty(string axisOperation) {
+
+		GameObject dropDownMachineObj = GameObject.Find ("DropdownMachine");
+		Dropdown dropDownMachine = dropDownMachineObj.GetComponent<Dropdown> ();
+		int valueMachine = dropDownMachine.value;
+		Machine machine = (Machine)listeMachine [valueMachine - 1];
+
+		GameObject networkManagerObject = GameObject.Find ("NetworkManager");
+		NetworkManager networkManager = networkManagerObject.GetComponent<NetworkManager> ();
+		networkManager.sendMessageChangeArrowProperty(machine.getNomMachineObjectTarget(), this.arrowProperty, axisOperation);
+	}
+
+
 }

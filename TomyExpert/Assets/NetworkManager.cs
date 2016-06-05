@@ -60,7 +60,8 @@ public class NetworkManager : MonoBehaviour {
 		Debug.Log("sending message 1");
 		NetMessage nm = new NetMessage();
 		nm.number = 5;
-		nm.str = "toggle_anim;kitkat;Logo";
+		//nm.str = "toggle_anim;kitkat;Logo";
+		nm.str = "test";
 		NetworkServer.SendToAll(NetMessage.MsgId, nm);
 	}
 
@@ -78,6 +79,15 @@ public class NetworkManager : MonoBehaviour {
 		NetMessage nm = new NetMessage();
 		nm.number = 5;
 		nm.str = "surimpression;"+ model +";" + element;
+		NetworkServer.SendToAll(NetMessage.MsgId, nm);
+	}
+
+	public void sendMessageChangeArrowProperty(string model, string property, string axisOperation) {
+		
+		NetMessage nm = new NetMessage();
+		nm.number = 5;
+		nm.str = "arrow;"+ model +";" + property + ";" + axisOperation;
+		Debug.Log(nm.str);
 		NetworkServer.SendToAll(NetMessage.MsgId, nm);
 	}
 	

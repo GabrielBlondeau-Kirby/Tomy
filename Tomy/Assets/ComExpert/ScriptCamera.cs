@@ -63,6 +63,95 @@ public class ScriptCamera : MonoBehaviour
 			GameObject go = GameObject.Find(PrefixTarget + split[1]).transform.Find(PrefixAugmentation + split[2]).gameObject;
 			go.SetActive(!go.activeInHierarchy);
 		}
+		else if (split [0].Equals ("arrow")) {
+		
+			GameObject go = GameObject.Find(PrefixTarget + split[1]).transform.Find("Surimpr_Arrow").gameObject;
+			//GameObject go = GameObject.Find("Surimpr_Arrow");
+
+			if (split[2].Equals("position")) {
+				Vector3 temp = go.transform.position;
+				switch (split[3]) {
+				case "Xup":
+					temp.x += 10;
+					break;
+				case "Xdown":
+					temp.x -= 10;
+					break;
+				case "Yup":
+					temp.y += 10;
+					break;
+				case "Ydown":
+					temp.y -= 10;
+					break;
+				case "Zup":
+					temp.z += 10;
+					break;
+				case "Zdown":
+					temp.z -= 10;
+					break;
+				}
+				go.transform.position = temp;
+			}
+			else if (split[2].Equals("rotation")) {
+				Quaternion temp = go.transform.rotation;
+				int x = 0, y = 0, z = 0;
+				switch (split[3]) {
+				case "Xup":
+					temp.x += 50;
+					x = 30;
+					break;
+				case "Xdown":
+					temp.x -= 50;
+					x=-30;
+					break;
+				case "Yup":
+					temp.y += 50;
+					y = 30;
+					break;
+				case "Ydown":
+					temp.y -= 50;
+					y = -30;
+					break;
+				case "Zup":
+					temp.z += 50;
+					z = 30;
+					break;
+				case "Zdown":
+					temp.z -= 50;
+					z = -30;
+					break;
+
+				}
+				go.transform.Rotate (x, y, z);
+				//go.transform.rotation = temp;
+			}
+			else if (split[2].Equals("taille")) {
+				Vector3 temp = go.transform.localScale;
+				switch (split[3]) {
+				case "Xup":
+					temp.x += 0.1F;
+					break;
+				case "Xdown":
+					temp.x -= 0.1F;
+					break;
+				case "Yup":
+					temp.y += 0.1F;
+					break;
+				case "Ydown":
+					temp.y -= 0.1F;
+					break;
+				case "Zup":
+					temp.z += 0.1F;
+					break;
+				case "Zdown":
+					temp.z -= 0.1F;
+					break;
+
+				}
+				go.transform.localScale = temp;
+			}
+				
+		}
 
 		/*if (split[0].Equals(Command_ToggleAnim))
 		{
