@@ -3,12 +3,10 @@ Tomy
 
 ## TODO
 
-- Procédure step 2 //mise de côté
-- Procedure step 4
-- Procédure step 6
-- Procédure step 8
-- Diagnostic step 1
-- Appeler l'expert
+- Procédure step 2 à supprimer quand les autres seront faites
+- Procedure step 4 (décoller le scotch)
+- Procédure step 6 (coller les bandes de scotch)
+- Finir l'appel expert (ajouter surimpression bouton, corriger les bugs, améliorer l'interface)
 
 ------
 
@@ -17,7 +15,6 @@ Moins prioritaire :
 - petite animation pour le picto patienter
 - essayer d'éviter les boucles sur les images/textes du canvas pour trouver l'élément à modifier
 - corriger le bug de la liste des machines/procédures qui est déjà scrollée à l'arrivée sur la page
-- faire fonctionner le bouton retour de la tablette
 - ajouter picto patienter entre chaque étape vu que Vuforia est long à charger
 
 
