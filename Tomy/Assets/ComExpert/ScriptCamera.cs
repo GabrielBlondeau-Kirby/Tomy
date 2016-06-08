@@ -9,8 +9,8 @@ using Vuforia;
 public class ScriptCamera : MonoBehaviour
 {
 	//private const string ServerIp = "192.168.0.58";
-	//private const string ServerIp = "10.145.128.96";
-	private const string ServerIp = "192.168.0.20";
+	private const string ServerIp = "10.145.128.79";
+	//private const string ServerIp = "192.168.0.20";
 
 	private const int ServerPort = 4444;
 
@@ -68,7 +68,7 @@ public class ScriptCamera : MonoBehaviour
 		NetMessage message = netmsg.ReadMessage<NetMessage>();
 		string[] split = message.str.Split(';');
 
-		dbg_network("received message " + message);
+		dbg_network("received message " + message.str);
 
 		if (split [0].Equals ("surimpression")) {
 			GameObject go = GameObject.Find(PrefixTarget + split[1]).transform.Find(PrefixAugmentation + split[2]).gameObject;
