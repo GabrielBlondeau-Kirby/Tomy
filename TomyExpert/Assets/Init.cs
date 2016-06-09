@@ -6,7 +6,7 @@ public class Init : MonoBehaviour {
 
 
 	private static ArrayList listeMachines = new ArrayList() {
-		new Machine("Imprimante 3D", "ImprimanteAD", new ArrayList() { "Plateau", "Bouton" },  new ArrayList() { "Plateau", "Bouton" }),
+		new Machine("Imprimante 3D", "Imprimante3D", new ArrayList() { "Plateau", "Bouton" },  new ArrayList() { "Plateau", "Bouton" }),
 		new Machine("Imprimante 3D - Plateau", "PlaqueImprimante", new ArrayList() { "Plaque de verre" }, new ArrayList() { "PlaqueVerre" }),
 		new Machine("Porte téléphone rose", "PorteTelephoneRose", new ArrayList() {"Test 1", "Test 2" }, new ArrayList() {"Test1", "Test2" }),
 		new Machine("Porte téléphone rose", "PorteTelephoneRose", new ArrayList() {"Test 1", "Test 2" }, new ArrayList() {"Test1", "Test2" }),
