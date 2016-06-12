@@ -32,6 +32,11 @@ public class Choix : MonoBehaviour {
 		SceneManager.LoadScene ("choix_machine");
 	}
 
+	//bouton choisir manuellement sur la page de reconnaissance de la machine
+	public void accueil() {
+		SceneManager.LoadScene ("accueil");
+	}
+
 	//boutons ">" sur les pages de procédure
 	//boutons "non" sur les pages de diagnostic
 	public void nextStep() {
@@ -39,6 +44,11 @@ public class Choix : MonoBehaviour {
 
 		if (ApplicationModel.isProcedure) {
 			string scene = "procedure_" + ApplicationModel.getMachine ().getNomScene () + "_" + ApplicationModel.getProcedure ().getNomScene () + "_step_" +  ApplicationModel.getStep();
+			if (scene.Equals("procedure_imprimante3d_changer_scotch_step_02")){
+				ApplicationModel.nextStep ();
+				scene = "procedure_" + ApplicationModel.getMachine ().getNomScene () + "_" + ApplicationModel.getProcedure ().getNomScene () + "_step_" +  ApplicationModel.getStep();
+			}
+
 			SceneManager.LoadScene (scene);
 		} else {
 			string scene = "diagnostic" + ApplicationModel.getMachine ().getNomScene () + "_step_" +  ApplicationModel.getStep();
@@ -66,6 +76,10 @@ public class Choix : MonoBehaviour {
 		else {
 			if (ApplicationModel.isProcedure) {
 				string scene = "procedure_" + ApplicationModel.getMachine ().getNomScene () + "_" + ApplicationModel.getProcedure ().getNomScene () + "_step_" +  ApplicationModel.getStep();
+				if (scene.Equals ("procedure_imprimante3d_changer_scotch_step_02")) {
+					ApplicationModel.previousStep ();
+					scene = "procedure_" + ApplicationModel.getMachine ().getNomScene () + "_" + ApplicationModel.getProcedure ().getNomScene () + "_step_" +  ApplicationModel.getStep();
+				}
 				SceneManager.LoadScene (scene);
 			} else {
 				string scene = "diagnostic" + ApplicationModel.getMachine ().getNomScene () + "_step_" +  ApplicationModel.getStep();
