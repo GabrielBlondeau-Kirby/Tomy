@@ -13,10 +13,13 @@ public class NetworkManager : MonoBehaviour {
 
 
 	private bool isServerInitialized = false;
+	private bool clientConnected = false;
+	private int currentConnection = -1;
 
 	public RawImage imgscreen;
 	public GameObject PanelAppelEntrant;
 	public AudioSource audioSource;
+
 
 	void Awake()
 	{
@@ -41,7 +44,7 @@ public class NetworkManager : MonoBehaviour {
 			NetworkServer.RegisterHandler(NetMessage.MsgId, ReceivedNetMessage);
 
 			NetworkServer.Listen(_serverPort); // écoute sur le port 4444 sur toute les interface réseau disponible
-			Debug.Log(NetworkServer.numChannels);
+			//Debug.Log(NetworkServer.numChannels);
 			isServerInitialized = true;
 		}
 		else
@@ -95,23 +98,30 @@ public class NetworkManager : MonoBehaviour {
 	{
 		Debug.Log("Connection occured");
 		//Refuse automatiquement les connexions supplémentaires
-		if (NetworkServer.connections.Count > 2) { 
+		if (clientConnected) { 
 			RefuseConnexion(netMsg.conn.connectionId);
-			netMsg.conn.Disconnect();
+			
+		//	netMsg.conn.Disconnect(); // Le client appel Disconnected aussi => peut crée une erreur.
 		}
 		else
 		{
+			
 			PanelAppelEntrant.SetActive(true);
 			audioSource.Play();
+			clientConnected = true;
+			currentConnection = netMsg.conn.connectionId;
 		}
-		//Ajouter avertissement connexion + accepter ou refuser.
 	}
 	public void OnDisconnected(NetworkMessage netMsg)
 	{
-		Debug.Log("Disconnected " + NetworkServer.connections.Count);
-		if (NetworkServer.connections.Count < 3)
+		Debug.Log("Someone Disconnected");
+		if (netMsg.conn.connectionId == currentConnection)
 		{
+			Debug.Log("Current Client disconnected");
 			imgscreen.texture = null;
+			currentConnection = -1;
+			clientConnected = false;
+
 		}
 	}
 
@@ -155,7 +165,7 @@ public class NetworkManager : MonoBehaviour {
 	{
 		//reception et lecture d'un message CamUpdate
 		CamUpdate cu = netMsg.ReadMessage<CamUpdate>();
-		Debug.Log("Received msg " + cu.ImageBytes.ToString());
+	//	Debug.Log("Received msg " + cu.ImageBytes.ToString());
 		
 		Texture2D t2d = new Texture2D(640, 480); // création d'une nouvelle texture 2d
 		t2d.LoadImage(cu.ImageBytes); // envoie l'image reçu depuis CamUpdate dans la texture2D
