@@ -79,7 +79,11 @@ public class ScriptCamera : MonoBehaviour
 			GameObject go = GameObject.Find(PrefixTarget + split[1]).transform.Find("Surimpr_Arrow").gameObject;
 			//GameObject go = GameObject.Find("Surimpr_Arrow");
 
-			if (split[2].Equals("position")) {
+			if (split[2].Equals("display")) {
+				go.SetActive(!go.activeInHierarchy);
+			}
+
+			else if (split[2].Equals("position")) {
 				Vector3 temp = go.transform.position;
 				switch (split[3]) {
 				case "Xup":

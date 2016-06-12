@@ -84,6 +84,14 @@ public class NetworkManager : MonoBehaviour {
 		nm.str = "surimpression;"+ model +";" + element;
 		NetworkServer.SendToAll(NetMessage.MsgId, nm);
 	}
+
+	public void sendMessageDisplayArrow(string model) {
+		Debug.Log("sending message " + model);
+		NetMessage nm = new NetMessage();
+		nm.number = 5;
+		nm.str = "arrow;"+ model +";display";
+		NetworkServer.SendToAll(NetMessage.MsgId, nm);
+	}
 	
 	public void sendMessageChangeArrowProperty(string model, string property, string axisOperation) {
 		

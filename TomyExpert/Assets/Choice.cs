@@ -86,6 +86,27 @@ public class Choice : MonoBehaviour {
 		networkManager.sendMessageSurimpression (machine.getNomMachineObjectTarget(), element);
 	}
 
+	public void AfficherFleche() {
+
+		/*GameObject btnAfficherObj = GameObject.Find ("TextButtonAfficher");
+		Text textBtnAfficher = btnAfficherObj.GetComponent<Text> ();
+		if (textBtnAfficher.text.Equals ("Afficher")) {
+			textBtnAfficher.text = "Cacher";
+		} else {
+			textBtnAfficher.text = "Afficher";
+		}*/
+
+		GameObject dropDownMachineObj = GameObject.Find ("DropdownMachine");
+		Dropdown dropDownMachine = dropDownMachineObj.GetComponent<Dropdown> ();
+		int valueMachine = dropDownMachine.value;
+
+		Machine machine = (Machine)listeMachine [valueMachine - 1];
+
+		GameObject networkManagerObject = GameObject.Find ("NetworkManager");
+		NetworkManager networkManager = networkManagerObject.GetComponent<NetworkManager> ();
+		networkManager.sendMessageDisplayArrow (machine.getNomMachineObjectTarget());
+	}
+
 
 	public void setArrowProperty(string property) {
 		this.arrowProperty = property;
