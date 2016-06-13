@@ -9,8 +9,8 @@ using Vuforia;
 public class ScriptCamera : MonoBehaviour
 {
 	//private const string ServerIp = "192.168.0.58";
-	//private const string ServerIp = "10.145.128.96";
-	private const string ServerIp = "192.168.0.20";
+	private const string ServerIp = "10.145.128.96";
+	//private const string ServerIp = "192.168.0.20";
 
 	private const int ServerPort = 4444;
 
